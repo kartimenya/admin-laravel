@@ -25,22 +25,79 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="w-25">
-            <form action="{{ route('admin.post.update', $post->id) }}" method="POST">
-              @csrf
-              @method('PATCH')
-              <div class="form-group">
-                <label for="exampleInputEmail1">Название категории</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="title" value="{{ $post->title }}" placeholder="Введите название поста">
-                @error('title')
-                    <p class="text-danger">Это поле обязательно нужно заполнить</p>
-                @enderror
-              </div>
-              <button class="btn btn-primary" type="submit">Обновить</button>
-            </form>
+        <form action="{{ route('admin.post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('PATCH')
+          <div class="form-group">
+            <label for="exampleInputEmail1">Название поста</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="exampleInputEmail1" 
+              name="title" 
+              placeholder="Введите название поста" 
+              value="{{ $post->title }}"
+            >
+            @error('title')
+                <p class="text-danger">Это поле обязательно нужно заполнить</p>
+            @enderror
           </div>
-        </div>
+          <div lass="form-group">
+            <textarea id="summernote" name="content">{{ $post->content }}</textarea>
+            @error('content')
+                <p class="text-danger">Это поле обязательно нужно заполнить</p>
+            @enderror
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">Загрузить обложку</label>
+            <div class="w-25">
+              <img class="w-50" src="{{asset('storage/'.$post->preview_image)  }}" alt="">
+            </div>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="exampleInputFile" name="preview_image">
+                <label class="custom-file-label" for="exampleInputFile">Выберите изображение</label>
+              </div>
+              <div class="input-group-append">
+                <span class="input-group-text">Загрузка</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">Загрузить изображение</label>
+            <div class="w-25">
+              <img class="w-50" src="{{ asset('storage/'.$post->main_image) }}" alt="">
+            </div>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="exampleInputFile" name="main_image">
+                <label class="custom-file-label" for="exampleInputFile">Выберите изображение</label>
+              </div>
+              <div class="input-group-append">
+                <span class="input-group-text">Загрузка</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group w-50">
+            <label>Выберите катигорию</label>
+            <select class="form-control" name="category_id">
+              @foreach ($categories as $category)
+                <option value="{{ $category->id }}" {{ $category->id == $post->category_id ? 'selected' : '' }}>{{ $category->title }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Теги</label>
+            <select class="select2" multiple="multiple" data-placeholder="Выберите теги" name="tag_ids[]" style="width: 100%;">
+              @foreach ($tags as $tag)
+                <option {{ is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->toArray() ) ? 'selected' : ''}} value="{{ $tag->id }}">{{ $tag->title }}</option>   
+              @endforeach 
+            </select>
+          </div>
+          <div lass="form-group">
+            <button class="btn btn-primary" type="submit">Обновить</button>
+          </div>
+        </form>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
