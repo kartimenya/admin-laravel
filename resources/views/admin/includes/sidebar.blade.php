@@ -14,6 +14,14 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{ route('admin.user.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-clipboard"></i>
+                <p>
+                  {{ __('Пользователи') }}
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{ route('admin.category.index') }}" class="nav-link">
                 <i class="nav-icon fa fa-solid fa-clipboard-list"></i>
                 <p>

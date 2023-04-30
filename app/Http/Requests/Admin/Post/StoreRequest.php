@@ -33,4 +33,18 @@ class StoreRequest extends FormRequest
             'tag_ids.*' => 'nullable|integer|exists:tags,id',
         ];
     }
+
+    public function messages(): array{
+        return [
+            'title.required' => 'Поле обязательно для заполнения',
+            'title.string' => 'Тут должен быть только текст',
+            'content.required' => 'Поле обязательно для заполнения',
+            'content.string' => 'Тут должен быть только текст',
+            'preview_image.file' => 'Загрузите файл картинки',
+            'main_image.file' => 'Загрузите файл картинки',
+            'category_id.required' => 'Поле обязательно для заполнения',
+            'exists:categories,id' => 'Такой категории нет',
+            'tag_ids.*exists:tags,id' => 'Такого тега нет нет',
+        ];
+    }
 }

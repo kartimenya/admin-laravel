@@ -39,13 +39,13 @@
               value="{{ $post->title }}"
             >
             @error('title')
-                <p class="text-danger">Это поле обязательно нужно заполнить</p>
+                <p class="text-danger">{{ $message }}</p>
             @enderror
           </div>
           <div lass="form-group">
             <textarea id="summernote" name="content">{{ $post->content }}</textarea>
             @error('content')
-                <p class="text-danger">Это поле обязательно нужно заполнить</p>
+                <p class="text-danger">{{ $message }}</p>
             @enderror
           </div>
           <div class="form-group">
@@ -62,6 +62,9 @@
                 <span class="input-group-text">Загрузка</span>
               </div>
             </div>
+            @error('preview_image')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           <div class="form-group">
             <label for="exampleInputFile">Загрузить изображение</label>
@@ -77,6 +80,9 @@
                 <span class="input-group-text">Загрузка</span>
               </div>
             </div>
+            @error('main_image')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           <div class="form-group w-50">
             <label>Выберите катигорию</label>
@@ -85,6 +91,9 @@
                 <option value="{{ $category->id }}" {{ $category->id == $post->category_id ? 'selected' : '' }}>{{ $category->title }}</option>
               @endforeach
             </select>
+            @error('category_id')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           <div class="form-group">
             <label>Теги</label>
@@ -93,6 +102,9 @@
                 <option {{ is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->toArray() ) ? 'selected' : ''}} value="{{ $tag->id }}">{{ $tag->title }}</option>   
               @endforeach 
             </select>
+            @error('tag_ids')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           <div lass="form-group">
             <button class="btn btn-primary" type="submit">Обновить</button>
