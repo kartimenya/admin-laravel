@@ -30,14 +30,14 @@
             <form action="{{ route('admin.user.store') }}" method="POST">
               @csrf
               <div class="form-group">
-                <label for="exampleInputEmail1">Название категории</label>
+                <label for="exampleInputEmail1">Имя пользователя</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="Введите имя пользователя">
                 @error('name')
                     <p class="text-danger">Это поле обязательно нужно заполнить</p>
                 @enderror
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Название категории</label>
+                <label for="exampleInputEmail1">Email</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Введите email">
                 @error('email')
                     <p class="text-danger">Это поле обязательно нужно заполнить</p>
