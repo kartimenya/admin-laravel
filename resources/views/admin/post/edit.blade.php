@@ -88,7 +88,7 @@
             <label>Выберите катигорию</label>
             <select class="form-control" name="category_id">
               @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ $category->id == $post->category_id ? 'selected' : '' }}>{{ $category->title }}</option>
+                <option {{ $category->id == $post->category_id ? 'selected' : ''}} value="{{ $category->id }}">{{ $category->title }}</option>
               @endforeach
             </select>
             @error('category_id')

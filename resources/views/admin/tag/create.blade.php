@@ -12,8 +12,9 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item"><a href="{{ route('admin.tag.index') }}">Главная</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('admin.tag.index') }}">Теги</a></li>
+              <li class="breadcrumb-item active">Создание тега</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,7 +34,7 @@
                 <label for="exampleInputEmail1">Название тега</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="title" placeholder="Введите название тега">
                 @error('title')
-                    <p class="text-danger">Это поле обязательно нужно заполнить</p>
+                    <p class="text-danger">{{ $message }}</p>
                 @enderror
               </div>
               <button class="btn btn-primary" type="submit">Добавить</button>

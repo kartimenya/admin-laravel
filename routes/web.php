@@ -21,7 +21,7 @@ Route::group([], function() {
 
 Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     Route::group(['namespace' => 'Main'], function () {
-        Route::get('/', 'IndexController');
+        Route::get('/', 'IndexController')->name('admin.main.index');
     });
     Route::namespace('Post')->prefix('posts')->group(function(){
         Route::get('/', IndexController::class)->name('admin.post.index');

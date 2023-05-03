@@ -24,8 +24,8 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string',
-            'content' => 'required|string',
+            'title' => 'required|string|min:3',
+            'content' => 'required|string|min:15',
             'preview_image' => 'nullable|file',
             'main_image' => 'nullable|file',
             'category_id' => 'required|integer|exists:categories,id',
@@ -38,13 +38,15 @@ class StoreRequest extends FormRequest
         return [
             'title.required' => 'Поле обязательно для заполнения',
             'title.string' => 'Тут должен быть только текст',
+            'title.min' => 'Минимальная длина заголовка: 3 символов',
             'content.required' => 'Поле обязательно для заполнения',
             'content.string' => 'Тут должен быть только текст',
+            'content.min' => 'Минимальная длина содержания: 15 символа',
             'preview_image.file' => 'Загрузите файл картинки',
             'main_image.file' => 'Загрузите файл картинки',
             'category_id.required' => 'Поле обязательно для заполнения',
             'exists:categories,id' => 'Такой категории нет',
-            'tag_ids.*exists:tags,id' => 'Такого тега нет нет',
+            'tag_ids.*exists:tags,id' => 'Такого тега нет',
         ];
     }
 }

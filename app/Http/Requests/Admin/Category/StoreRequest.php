@@ -21,10 +21,18 @@ class StoreRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'title' => 'required|string|'
+            'title' => 'required|string|min:3'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Это поле эбязательно нужно заполнить',
+            'title.min' => 'В названии категории должно быть минимуи 3 символа',
         ];
     }
 }

@@ -12,8 +12,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Главная</a></li>
+              <li class="breadcrumb-item active">Пользователи</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -38,7 +38,7 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Название</th>
+                      <th>Имя</th>
                       <th colspan="3 " class="text-center">Действия</th>
                     </tr>
                   </thead>
@@ -46,7 +46,7 @@
                     @foreach ($users as $user)
                       <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->title }}</td>
+                        <td>{{ $user->name }}</td>
                         <td class="text-center">
                           <a href="{{ route('admin.user.show', $user->id) }}"><i class="far fa-eye"></i></a>
                         </td>

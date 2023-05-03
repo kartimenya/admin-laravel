@@ -20,7 +20,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Главная</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
             </ol>
           </div><!-- /.col -->
@@ -44,8 +44,16 @@
                       <td>{{ $post->id }}</td>
                     </tr>
                     <tr>
-                      <td>Название</td>
+                      <td>Категория</td>
+                      <td>{{ $category->title }}</td>
+                    </tr>
+                    <tr>
+                      <td>Название поста</td>
                       <td>{{ $post->title }}</td>
+                    </tr>
+                    <tr>
+                      <td>Содержание</td>
+                      <td>{{ $post->content }}</td>
                     </tr>
                   </tbody>
                 </table>

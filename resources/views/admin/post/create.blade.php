@@ -12,8 +12,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item"><a href="#">Главная</a></li>
+              <li class="breadcrumb-item active">Пользователи</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -43,6 +43,7 @@
               @enderror
             </div>
             <div lass="form-group">
+              <label for="exampleInputEmail1">Содержание поста</label>
               <textarea id="summernote" name="content">{{ old('content') }}</textarea>
               @error('content')
                   <p class="text-danger">{{ $message }}</p>
@@ -82,7 +83,7 @@
               <label>Выберите катигорию</label>
               <select class="form-control" name="category_id">
                 @foreach ($categories as $category)
-                  <option value="{{ $category->id }}">{{ $category->title }}</option>
+                  <option {{ $category->id == old('category_id') ? 'selected' : ''}} value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
               </select>
               @error('category_id')

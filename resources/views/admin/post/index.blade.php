@@ -12,7 +12,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Главная</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
             </ol>
           </div><!-- /.col -->
@@ -38,7 +38,7 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Название</th>
+                      <th>Название поста</th>
                       <th colspan="3 " class="text-center">Действия</th>
                     </tr>
                   </thead>
