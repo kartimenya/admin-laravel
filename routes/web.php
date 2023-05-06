@@ -19,10 +19,28 @@ Route::group([], function() {
     Route::get('/', App\Http\Controllers\Main\IndexController::class);
 });
 
+Route::namespace('App\Http\Controllers\Personal')->prefix('personal')->middleware(['auth', 'admin'])->group(function(){
+    Route::namespace('Main')->prefix('main')->group(function(){
+        Route::get('/', IndexController::class)->name('personal.main.index');
+    });
+    Route::namespace('Liked')->prefix('liked')->group(function(){
+        Route::get('/', IndexController::class)->name('personal.liked.index');
+        Route::delete('/{post}', DeleteController::class)->name('personal.liked.delete');
+    });
+    Route::namespace('Comment')->prefix('comments')->group(function(){
+        Route::get('/', IndexController::class)->name('personal.comment.index');
+        Route::get('/{comment}/edit', EditController::class)->name('personal.comment.edit');
+        Route::patch('/{comment}', UpdateController::class)->name('personal.comment.update');
+        Route::delete('/{comment}', DeleteController::class)->name('personal.comment.delete');
+    });
+});
+
 Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->middleware(['auth', 'admin'])->group(function(){
+
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('admin.main.index');
     });
+
     Route::namespace('Post')->prefix('posts')->group(function(){
         Route::get('/', IndexController::class)->name('admin.post.index');
         Route::get('/create', CreateController::class)->name('admin.post.create');
