@@ -16,8 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([], function() {
-    Route::get('/', App\Http\Controllers\Main\IndexController::class);
+    Route::get('/', App\Http\Controllers\Main\IndexController::class)->name('main.index');
 });
+
+Route::namespace('App\Http\Controllers\Post')->prefix('posts')->group(function(){
+    Route::get('/', IndexController::class)->name('post.index');
+    Route::get('/{post}', ShowController::class)->name('post.show');
+});
+
 
 Route::namespace('App\Http\Controllers\Personal')->prefix('personal')->middleware(['auth', 'admin'])->group(function(){
     Route::namespace('Main')->prefix('main')->group(function(){
